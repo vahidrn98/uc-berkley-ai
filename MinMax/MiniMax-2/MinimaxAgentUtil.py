@@ -1,5 +1,6 @@
 from util import manhattanDistance
 from game import Directions
+from MinimaxAgentEvalUtil import minimaxAgentEval
 def minimaxAgentAction(agent, gameState):
     maxValue = float("-inf")
     maxAction = Directions.STOP
@@ -13,7 +14,11 @@ def minimaxAgentAction(agent, gameState):
 
 def getValue(agent, gameState, currentDepth, agentIndex):
     if currentDepth == agent.depth or gameState.isWin() or gameState.isLose():
-        return agent.evaluationFunction(gameState)
+        
+        ########## this line is new ###########
+        return minimaxAgentEval(gameState)
+        #######################################
+        
     elif agentIndex == 0:
         return maxValue(agent, gameState,currentDepth)
     else:
